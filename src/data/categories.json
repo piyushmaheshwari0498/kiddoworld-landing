@@ -1,0 +1,35 @@
+[
+  {
+    "id": "battery",
+    "label": "Battery-Powered Toys",
+    "short": "Battery-Powered",
+    "icon": "bolt",
+    "description": "Motorised vehicles, moving action figures, and light & sound toys that appeal across age groups.",
+    "examples": [
+      "High Speed Train",
+      "Hover Ball"
+    ]
+  },
+  {
+    "id": "rc",
+    "label": "Remote-Controlled Toys",
+    "short": "RC",
+    "icon": "remote",
+    "description": "RC cars and similar toys — a higher-margin, popular category especially for gifting occasions.",
+    "examples": [
+      "RC Thar 4×4",
+      "Desert Scorpion"
+    ]
+  },
+  {
+    "id": "friction",
+    "label": "Friction-Powered Toys",
+    "short": "Friction-Powered",
+    "icon": "truck",
+    "description": "Pull-back and push-along vehicles, figurines, and outdoor play items — the volume backbone of our catalogue.",
+    "examples": [
+      "Tractor",
+      "Police Van"
+    ]
+  }
+]

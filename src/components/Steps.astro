@@ -1,0 +1,21 @@
+---
+import { content } from '../lib/site.js';
+const s = content.steps;
+---
+<section id="how-it-works" class="alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">{s.eyebrow}</span>
+      <h2>{s.title}</h2>
+    </div>
+    <div class="steps">
+      {s.items.map((item, i) => (
+        <div class="step">
+          <div class="num">{String(i + 1).padStart(2, '0')}</div>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

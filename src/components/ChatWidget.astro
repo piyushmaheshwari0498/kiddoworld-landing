@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import { site, waLink } from '../lib/site.js';
+---
+<div class="chat-widget">
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label={`Chat with ${site.brand.name}`}>
+    <div class="chat-head">
+      <div>
+        <strong>Chat with {site.brand.name}</strong>
+        <span>Usually replies within the working day</span>
+      </div>
+      <button type="button" class="chat-close" id="chatClose" aria-label="Close chat"><Icon name="close" /></button>
+    </div>
+    <div class="chat-body">
+      <div class="chat-bubble">Hi! What can we help you with today?</div>
+      <div class="chat-topics">
+        <button type="button" data-chat-topic="Bulk pricing">Bulk pricing</button>
+        <button type="button" data-chat-topic="Minimum order quantity">MOQ &amp; ordering</button>
+        <button type="button" data-chat-topic="Full product catalogue">Full catalogue</button>
+      </div>
+    </div>
+    <form class="chat-form" id="chatForm">
+      <input type="text" id="chatInput" placeholder="Type your question…" aria-label="Type your question" maxlength="300" />
+      <button type="submit" aria-label="Send"><Icon name="send" /></button>
+    </form>
+    <a href={waLink()} class="chat-wa" target="_blank" rel="noopener"><Icon name="whatsapp" />Prefer WhatsApp? Chat live instead</a>
+  </div>
+  <button type="button" class="chat-toggle" id="chatToggle" aria-label="Open chat" aria-expanded="false"><Icon name="message" /></button>
+</div>

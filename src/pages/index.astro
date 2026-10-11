@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import About from '../components/About.astro';
+import Categories from '../components/Categories.astro';
+import Why from '../components/Why.astro';
+import Catalogue from '../components/Catalogue.astro';
+import Gallery from '../components/Gallery.astro';
+import Videos from '../components/Videos.astro';
+import Steps from '../components/Steps.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import ChatWidget from '../components/ChatWidget.astro';
+import { site } from '../lib/site.js';
+
+const title = `${site.brand.name} | ${site.brand.legalName} — Wholesale Toy Manufacturer, Ahmedabad`;
+const description = `${site.brand.name} (${site.brand.legalName}) manufactures battery-powered, RC and friction-powered toys in Ahmedabad, India. Bulk supply for distributors, dealers and retailers across India.`;
+---
+<Layout title={title} description={description}>
+  <Header />
+  <main id="main">
+    <span id="top"></span>
+    <Hero />
+    <TrustStrip />
+    <About />
+    <Categories />
+    <Catalogue />
+    <Gallery />
+    <Videos />
+    <Why />
+    <Steps />
+    <Contact />
+  </main>
+  <Footer />
+  <ChatWidget />
+  <script>
+    import '../scripts/main.js';
+  </script>
+</Layout>

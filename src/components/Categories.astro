@@ -1,0 +1,30 @@
+---
+import Icon from './Icon.astro';
+import { content, categories, site } from '../lib/site.js';
+const c = content.categories;
+---
+<section id="products" class="alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">{c.eyebrow}</span>
+      <h2>{c.title}</h2>
+      <p>{c.lead}</p>
+    </div>
+    <div class="cat-grid">
+      {categories.map((cat) => (
+        <div class="cat-card">
+          <div class="photo-placeholder">
+            <Icon name={cat.icon} />
+            {site.showPlaceholders && <span>Category photo — {cat.short.toLowerCase()} toys</span>}
+          </div>
+          <div class="body">
+            <h3>{cat.label}</h3>
+            <p>{cat.description}</p>
+            <div class="chip-row">{cat.examples.map((e) => <span class="chip">{e}</span>)}</div>
+            <a href="#catalogue" class="btn btn-outline btn-sm" data-filter-link={cat.id}>View {cat.short} toys</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+import { site, content, videos, url, publicFileExists } from '../lib/site.js';
+const v = content.videos;
+const ready = videos.filter((x) => x.youtube || (x.file && publicFileExists(x.file)));
+const show = ready.length > 0 || site.showPlaceholders;
+const list = ready.length > 0 ? ready : videos;
+---
+{show && (
+  <section id="videos">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{v.eyebrow}</span>
+        <h2>{v.title}</h2>
+      </div>
+      <div class="video-grid">
+        {list.map((item) => (
+          <div class="video-card">
+            {item.youtube ? (
+              <div class="video-frame" data-youtube={item.youtube}>
+                <img src={item.poster ? url(item.poster) : `https://i.ytimg.com/vi/${item.youtube}/hqdefault.jpg`} alt="" loading="lazy" />
+                <button type="button" class="video-play" aria-label={`Play video: ${item.title}`}><span><Icon name="play" /></span></button>
+              </div>
+            ) : item.file && publicFileExists(item.file) ? (
+              <div class="video-frame">
+                <video controls preload="none" playsinline poster={item.poster ? url(item.poster) : undefined}>
+                  <source src={url(item.file)} type="video/mp4" />
+                </video>
+              </div>
+            ) : (
+              <div class="video-frame ph"><Icon name="video" /><span>Add a YouTube ID or MP4 in src/data/videos.json</span></div>
+            )}
+            <h3>{item.title}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

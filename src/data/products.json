@@ -1,0 +1,524 @@
+[
+  {
+    "id": "hover-ball",
+    "name": "Hover Ball",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "projector-flash-light",
+    "name": "Projector Flash Light",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "elephant",
+    "name": "Elephant",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "camel",
+    "name": "Camel",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "horse",
+    "name": "Horse",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "cow",
+    "name": "Cow",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "horn-amplifier",
+    "name": "Horn & Amplifier",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "high-speed-train",
+    "name": "High Speed Train",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "sensor-bullet-train",
+    "name": "Sensor Bullet Train",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "model-car-classic",
+    "name": "Model Car Classic",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "turbo-racer",
+    "name": "Turbo Racer",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "track-toy-big",
+    "name": "Track Toy (Big)",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "track-toy-small",
+    "name": "Track Toy (Small)",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "vortex-x6",
+    "name": "Vortex X6",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "thar-light-sound-open",
+    "name": "Thar Light & Sound (Open)",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "thar-light-sound-top",
+    "name": "Thar Light & Sound (Top)",
+    "category": "battery",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "rc-thar-open",
+    "name": "RC Thar Open",
+    "category": "rc",
+    "ageGroups": [
+      "6-8",
+      "9+"
+    ]
+  },
+  {
+    "id": "rc-thar-top-4-4",
+    "name": "RC Thar Top 4×4",
+    "category": "rc",
+    "ageGroups": [
+      "6-8",
+      "9+"
+    ]
+  },
+  {
+    "id": "desert-scorpion",
+    "name": "Desert Scorpion",
+    "category": "rc",
+    "ageGroups": [
+      "6-8",
+      "9+"
+    ]
+  },
+  {
+    "id": "spider-rush-360",
+    "name": "Spider Rush 360",
+    "category": "rc",
+    "ageGroups": [
+      "6-8",
+      "9+"
+    ]
+  },
+  {
+    "id": "mig-47",
+    "name": "MiG 47",
+    "category": "rc",
+    "ageGroups": [
+      "6-8",
+      "9+"
+    ]
+  },
+  {
+    "id": "giraffe",
+    "name": "Giraffe",
+    "category": "friction",
+    "ageGroups": [
+      "0-2",
+      "3-5"
+    ]
+  },
+  {
+    "id": "engine",
+    "name": "Engine",
+    "category": "friction",
+    "ageGroups": [
+      "0-2",
+      "3-5"
+    ]
+  },
+  {
+    "id": "tippy-tappy-car",
+    "name": "Tippy Tappy Car",
+    "category": "friction",
+    "ageGroups": [
+      "0-2",
+      "3-5"
+    ]
+  },
+  {
+    "id": "funny-elephant",
+    "name": "Funny Elephant",
+    "category": "friction",
+    "ageGroups": [
+      "0-2",
+      "3-5"
+    ]
+  },
+  {
+    "id": "funny-swan",
+    "name": "Funny Swan",
+    "category": "friction",
+    "ageGroups": [
+      "0-2",
+      "3-5"
+    ]
+  },
+  {
+    "id": "clapping-hand",
+    "name": "Clapping Hand",
+    "category": "friction",
+    "ageGroups": [
+      "0-2",
+      "3-5"
+    ]
+  },
+  {
+    "id": "pigeon",
+    "name": "Pigeon",
+    "category": "friction",
+    "ageGroups": [
+      "0-2",
+      "3-5"
+    ]
+  },
+  {
+    "id": "tractor",
+    "name": "Tractor",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "suv-0007",
+    "name": "SUV 0007",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "mini-007",
+    "name": "Mini 007",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "classic-jeep",
+    "name": "Classic Jeep",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "racing-car",
+    "name": "Racing Car",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "heavy-truck",
+    "name": "Heavy Truck",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "milk-tanker",
+    "name": "Milk Tanker",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "oil-tanker",
+    "name": "Oil Tanker",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "power-dump-truck",
+    "name": "Power Dump Truck",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "dump-truck",
+    "name": "Dump Truck",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "power-cement-mixer",
+    "name": "Power Cement Mixer",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "police-van",
+    "name": "Police Van",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "ambulance",
+    "name": "Ambulance",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "school-van",
+    "name": "School Van",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "vintage-car",
+    "name": "Vintage Car",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "earth-mover",
+    "name": "Earth Mover",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "scoop-load",
+    "name": "Scoop & Load",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "thar-off-road",
+    "name": "Thar Off-Road",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "kali-pili-taxi",
+    "name": "Kali Pili Taxi",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "cruze-car",
+    "name": "Cruze Car",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "creta-car",
+    "name": "Creta Car",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "child-express",
+    "name": "Child Express",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "vande-bharat-train",
+    "name": "Vande Bharat Train",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "drift-car",
+    "name": "Drift Car",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "double-pull-back-train",
+    "name": "Double Pull-Back Train",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "press-go-retractable-train",
+    "name": "Press & Go Retractable Train",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "stunt-tank",
+    "name": "Stunt Tank",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "aircraft",
+    "name": "Aircraft",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "mega-armour-tank",
+    "name": "Mega Armour Tank",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  },
+  {
+    "id": "mini-transport-buddies",
+    "name": "Mini Transport Buddies",
+    "category": "friction",
+    "ageGroups": [
+      "3-5",
+      "6-8"
+    ]
+  }
+]

@@ -1,0 +1,33 @@
+---
+import Icon from './Icon.astro';
+import { site, url } from '../lib/site.js';
+const links = [
+  ['#about', 'About'],
+  ['#products', 'Products'],
+  ['#catalogue', 'Catalogue'],
+  ['#photos', 'Photos'],
+  ['#videos', 'Videos'],
+  ['#contact', 'Contact'],
+];
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="logo" aria-label={`${site.brand.name} home`}>
+      <img class="logo-img" src={url('images/logo.png')} alt={site.brand.name} width="103" height="40" />
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      {links.map(([href, label]) => <a href={href}>{label}</a>)}
+    </nav>
+    <div class="header-cta">
+      <a href="#contact" class="btn btn-outline btn-sm">Enquire</a>
+      <a href={site.shopUrl} class="btn btn-primary btn-sm"><Icon name="cart" />Shop Now</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
+        <Icon name="menu" />
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    {links.map(([href, label]) => <a href={href}>{label}</a>)}
+    <a href={site.shopUrl} class="btn btn-primary btn-block">Shop Now</a>
+  </div>
+</header>

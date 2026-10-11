@@ -1,0 +1,80 @@
+---
+import Icon from './Icon.astro';
+import { site, content, categories, ageGroups, products, url, waLink, productImage, publicFileExists } from '../lib/site.js';
+const c = content.catalogue;
+const catById = Object.fromEntries(categories.map((x) => [x.id, x]));
+const pdfExists = publicFileExists(site.catalogue.pdf);
+const pageSize = 12;
+---
+<section id="catalogue">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.eyebrow}</span>
+      <h2>{c.title}</h2>
+      <p>{c.lead}</p>
+    </div>
+
+    <div class="filter-groups" id="filters">
+      <div class="filter-group" role="group" aria-label="Filter by toy type">
+        <span class="filter-label">Toy type</span>
+        <button type="button" class="filter-btn active" data-group="category" data-value="all">All</button>
+        {categories.map((cat) => <button type="button" class="filter-btn" data-group="category" data-value={cat.id}>{cat.short}</button>)}
+      </div>
+      <div class="filter-group" role="group" aria-label="Filter by age group">
+        <span class="filter-label">Age group</span>
+        <button type="button" class="filter-btn active" data-group="age" data-value="all">All ages</button>
+        {ageGroups.map((a) => <button type="button" class="filter-btn" data-group="age" data-value={a.id}>{a.label}</button>)}
+      </div>
+    </div>
+    <p class="filter-count" id="filterCount" aria-live="polite"></p>
+
+    <div class="product-grid" id="productGrid" data-page-size={pageSize}>
+      {products.map((p) => {
+        const img = productImage(p);
+        const cat = catById[p.category];
+        return (
+          <article class="product-card" data-category={p.category} data-ages={p.ageGroups.join(' ')}>
+            <div class="product-photo">
+              {img
+                ? <img src={url(img)} alt={p.name} loading="lazy" decoding="async" width="600" height="600" />
+                : <div class="photo-placeholder" style="height:100%;aspect-ratio:auto;border:none;">
+                    <Icon name={cat.icon} />
+                    {site.showPlaceholders && <span>Photo</span>}
+                  </div>}
+            </div>
+            <div class="body">
+              <span class="product-tag">{cat.short}</span>
+              <h4>{p.name}</h4>
+              <p class="product-ages">Ages {p.ageGroups.join(' · ')} yrs</p>
+              <div class="product-actions">
+                <button type="button" class="product-enquire js-enquire" data-product={p.name} data-category={p.category}>
+                  <Icon name="message" />Enquire
+                </button>
+                <a class="product-wa" href={waLink(`Hi, I'd like bulk pricing for ${p.name}.`)} target="_blank" rel="noopener" aria-label={`Enquire about ${p.name} on WhatsApp`}>
+                  <Icon name="whatsapp" />
+                </a>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+    <div class="no-results" id="noResults" hidden>
+      <p>No toys match these filters yet.</p>
+      <button type="button" class="filter-reset" id="filterReset">Clear filters</button>
+    </div>
+    <button type="button" class="btn btn-outline show-more" id="showMore" hidden>Show more toys</button>
+
+    {(pdfExists || site.showPlaceholders) && (
+      <div class="catalogue-bar">
+        <div>
+          <h3>Want the full catalogue?</h3>
+          <p>Download our PDF catalogue, or message us for current bulk pricing and MOQ.</p>
+        </div>
+        {pdfExists
+          ? <a class="btn btn-primary" href={url(site.catalogue.pdf)} download><Icon name="download" />Download Catalogue (PDF)</a>
+          : <a class="btn btn-primary" href="#" aria-disabled="true" title={`Add ${site.catalogue.pdf} to /public`}><Icon name="download" />Catalogue PDF — coming soon</a>}
+      </div>
+    )}
+  </div>
+</section>

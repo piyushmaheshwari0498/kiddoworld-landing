@@ -1,0 +1,114 @@
+---
+import Icon from './Icon.astro';
+import { site, content, categories, ageGroups, url, waLink } from '../lib/site.js';
+const c = content.contact;
+const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.contact.mapQuery)}&output=embed`;
+---
+<section id="contact" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.eyebrow}</span>
+      <h2>{c.title}</h2>
+      <p>{c.lead}</p>
+    </div>
+
+    <div class="contact-grid">
+      <form class="contact-form" id="enquiryForm" method="post" action={url(site.form.endpoint)}
+            data-endpoint={url(site.form.endpoint)} data-wa-base={`https://wa.me/${site.whatsapp.number}`} novalidate>
+        <div id="formFields">
+          <p class="form-error" id="formError" role="alert" hidden></p>
+          <div class="form-row">
+            <label for="fname">Full name</label>
+            <input type="text" id="fname" name="name" placeholder="Your name" autocomplete="name" required maxlength="80" />
+          </div>
+          <div class="two-col">
+            <div class="form-row">
+              <label for="fbusiness">Business name</label>
+              <input type="text" id="fbusiness" name="business" placeholder="Company / shop name" autocomplete="organization" required maxlength="120" />
+            </div>
+            <div class="form-row">
+              <label for="fphone">Phone number</label>
+              <input type="tel" id="fphone" name="phone" placeholder="10-digit mobile number" autocomplete="tel" inputmode="tel" required pattern="[0-9+\s\-]{8,15}" title="Enter a valid phone number" maxlength="20" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="femail">Email <span style="font-weight:400;">(optional)</span></label>
+            <input type="email" id="femail" name="email" placeholder="you@company.com" autocomplete="email" maxlength="120" />
+          </div>
+          <div class="two-col">
+            <div class="form-row">
+              <label for="finterest">Toy type</label>
+              <select id="finterest" name="interest">
+                <option selected>Not sure yet</option>
+                {categories.map((cat) => <option value={cat.label}>{cat.label}</option>)}
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="fage">Age group</label>
+              <select id="fage" name="age">
+                <option selected>Any</option>
+                {ageGroups.map((a) => <option value={a.label}>{a.label}</option>)}
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="fmessage">Message</label>
+            <textarea id="fmessage" name="message" rows="4" placeholder="Tell us about the products and quantity you need" maxlength="2000"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+          <input type="hidden" name="started" id="fstarted" value="" />
+          <button type="submit" class="btn btn-primary btn-block" id="formSubmit"><Icon name="send" /><span>Send Enquiry</span></button>
+          <p class="form-note">We'll reply with pricing and MOQ, usually within the same working day — or <a href={waLink()} class="wa-inline-link" target="_blank" rel="noopener">message us on WhatsApp</a> for an instant reply.</p>
+        </div>
+
+        <div class="form-success" id="formSuccess" hidden>
+          <Icon name="check" />
+          <h4>Enquiry received</h4>
+          <p>Thanks — our team will get back to you with pricing and MOQ shortly. Want a faster reply? Send the same details on WhatsApp.</p>
+          <div class="success-actions">
+            <a class="btn btn-whatsapp btn-sm" id="successWa" href={waLink()} target="_blank" rel="noopener"><Icon name="whatsapp" />Continue on WhatsApp</a>
+            <button type="button" class="btn btn-outline btn-sm" id="formResetBtn">Send another enquiry</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="contact-info">
+        <div class="info-card">
+          <Icon name="pin" />
+          <div><h4>Factory address</h4><p>{site.contact.address}</p></div>
+        </div>
+        <div class="info-card">
+          <Icon name="clock" />
+          <div><h4>Business hours</h4><p>{site.contact.hours}</p></div>
+        </div>
+        <div class="info-card">
+          <Icon name="whatsapp" />
+          <div><h4>WhatsApp</h4><p><a class="link" href={waLink()} target="_blank" rel="noopener">Chat with us on WhatsApp Business</a></p></div>
+        </div>
+        {site.contact.email && (
+          <div class="info-card">
+            <Icon name="mail" />
+            <div><h4>Email</h4><p><a class="link" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p></div>
+          </div>
+        )}
+        <div class="info-card">
+          <Icon name="instagram" />
+          <div><h4>Instagram</h4><p><a class="link" href={site.social.instagram} target="_blank" rel="noopener">Follow us for new toys and factory updates</a></p></div>
+        </div>
+        <div class="map-embed">
+          <iframe src={mapSrc} loading="lazy" title={`${site.brand.name} factory location`} referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="insta-strip">
+      <div>
+        <h3>See new toys first on Instagram</h3>
+        <p>Product launches, factory moments and dealer favourites.</p>
+      </div>
+      <a href={site.social.instagram} class="btn btn-insta" target="_blank" rel="noopener"><Icon name="instagram" />Follow @{site.brand.name.replace(/\s+/g, '').toLowerCase()}</a>
+    </div>
+  </div>
+</section>

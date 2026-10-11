@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+import { content } from '../lib/site.js';
+---
+<section class="trust-strip" style="padding:26px 0;">
+  <div class="container">
+    <ul>
+      {content.trust.map((t) => <li><Icon name={t.icon} />{t.text}</li>)}
+    </ul>
+  </div>
+</section>

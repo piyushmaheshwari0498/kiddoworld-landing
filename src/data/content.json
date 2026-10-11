@@ -1,0 +1,76 @@
+{
+  "hero": {
+    "eyebrow": "Bhagwati Toyland Pvt. Ltd. · Est. 2024",
+    "title": "Quality toys, made in India.",
+    "titleAccentLine": "Built for",
+    "titleAccentWord": "business",
+    "lead": "Kiddo World manufactures battery-powered, RC, and friction-powered toys from our facility in Ahmedabad — trusted by distributors, dealers and retailers across India for reliable bulk supply."
+  },
+  "trust": [
+    { "icon": "factory", "text": "Manufactured in Ahmedabad, Gujarat" },
+    { "icon": "truck", "text": "Pan-India Bulk Dispatch" },
+    { "icon": "check", "text": "Direct From the Manufacturer" },
+    { "icon": "chat", "text": "Fast Response on WhatsApp" }
+  ],
+  "about": {
+    "eyebrow": "About Us",
+    "title": "Building magical worlds for kids — and reliable supply for your business.",
+    "body": "Bhagwati Toyland Pvt. Ltd. (Kiddo World) is an Ahmedabad-based toy manufacturer producing battery-powered, remote-controlled, and friction-powered toys. We supply wholesale distributors, regional dealers, and retailers across India, with a growing focus on quality, affordability, and reliable bulk supply.",
+    "facts": [
+      { "label": "Founded", "value": "2024" },
+      { "label": "Headquarters", "value": "Ahmedabad, Gujarat" },
+      { "label": "Business Type", "value": "B2B Bulk Supply" },
+      { "label": "Categories", "value": "Battery, RC, Friction-Powered" }
+    ],
+    "bis": { "enabled": false, "title": "BIS Certified", "detail": "" },
+    "sideTitle": "Why distributors work with us",
+    "points": [
+      { "icon": "rupee", "title": "Competitive bulk pricing", "text": "Per-unit and per-carton pricing with volume-based discounts." },
+      { "icon": "flag", "title": "Made in India", "text": "Manufactured locally, part of the growing domestic toy industry." },
+      { "icon": "user", "title": "No middlemen", "text": "You buy directly from the factory floor — no markup layers." },
+      { "icon": "chat", "title": "Fast, direct communication", "text": "Real conversations on WhatsApp Business, not ticket queues." }
+    ]
+  },
+  "categories": {
+    "eyebrow": "What We Manufacture",
+    "title": "Three toy categories. One reliable supplier.",
+    "lead": "Every category is built for volume — consistent quality across every carton, whatever the order size."
+  },
+  "why": {
+    "eyebrow": "Why Bulk Buyers Choose Us",
+    "title": "Built for distributors, not just customers.",
+    "items": [
+      { "icon": "rupee", "title": "Competitive Bulk Pricing", "text": "Per-unit and per-carton pricing with volume discounts on larger orders." },
+      { "icon": "flag", "title": "Made in India", "text": "Proudly part of India's growing domestic toy manufacturing movement." },
+      { "icon": "user", "title": "Direct From Manufacturer", "text": "No middleman markups — you deal with us, factory to dealer." },
+      { "icon": "chat", "title": "Fast, Direct Communication", "text": "Quick response via WhatsApp Business — no waiting on email chains." }
+    ]
+  },
+  "steps": {
+    "eyebrow": "How Bulk Ordering Works",
+    "title": "Three steps from enquiry to dispatch.",
+    "items": [
+      { "title": "Tell us what you need", "text": "Browse our catalogue or message us directly with your product requirement." },
+      { "title": "Confirm pricing & MOQ", "text": "We share bulk pricing and minimum order quantities for your selection." },
+      { "title": "Order, dispatch, delivered", "text": "Confirm your order and we handle dispatch and delivery pan-India." }
+    ]
+  },
+  "catalogue": {
+    "eyebrow": "Catalogue",
+    "title": "Explore our range.",
+    "lead": "Filter by toy type or age group — message us for current bulk pricing and minimum order quantities."
+  },
+  "gallery": {
+    "eyebrow": "Photos",
+    "title": "A look at our toys and factory."
+  },
+  "videos": {
+    "eyebrow": "Our Videos",
+    "title": "See Kiddo World in action."
+  },
+  "contact": {
+    "eyebrow": "Get In Touch",
+    "title": "Let's talk about your order.",
+    "lead": "Tell us what you're looking for and we'll get back to you with pricing and MOQ — usually within the same working day."
+  }
+}

@@ -1,0 +1,7 @@
+# Never serve configuration or stored enquiries to browsers.
+<FilesMatch "^(config|config\.sample)\.php$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex"
+</IfModule>

@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+import { content } from '../lib/site.js';
+const a = content.about;
+---
+<section id="about">
+  <div class="container about-grid">
+    <div>
+      <span class="eyebrow">{a.eyebrow}</span>
+      <h2 style="margin-top:12px;">{a.title}</h2>
+      <p class="body">{a.body}</p>
+      <div class="fact-grid">
+        {a.facts.map((f) => <div class="fact"><div class="k">{f.label}</div><div class="v">{f.value}</div></div>)}
+      </div>
+      {a.bis.enabled && (
+        <div class="about-bis">
+          <Icon name="badge" />
+          <div><strong>{a.bis.title}</strong><span>{a.bis.detail}</span></div>
+        </div>
+      )}
+    </div>
+    <div class="about-side">
+      <h3>{a.sideTitle}</h3>
+      {a.points.map((p) => (
+        <div class="row">
+          <Icon name={p.icon} />
+          <div><h4>{p.title}</h4><p>{p.text}</p></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

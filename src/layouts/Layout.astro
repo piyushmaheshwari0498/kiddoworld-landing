@@ -1,0 +1,47 @@
+---
+import '@fontsource-variable/fredoka';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import { site, url, launchWarnings } from '../lib/site.js';
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.domain).href;
+const logoUrl = new URL(url('images/logo.png'), site.domain).href;
+
+if (import.meta.env.PROD) {
+  for (const w of launchWarnings()) console.warn(`[launch checklist] ${w}`);
+}
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.brand.name,
+  legalName: site.brand.legalName,
+  url: site.domain,
+  logo: logoUrl,
+  address: { '@type': 'PostalAddress', streetAddress: site.contact.address, addressCountry: 'IN' },
+  sameAs: [site.social.instagram, site.social.facebook].filter((u) => u && u.length > 30),
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href={url('favicon.png')} />
+    <meta name="theme-color" content="#fffaf2" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={logoUrl} />
+    <meta property="og:url" content={canonical} />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "brand": {
+    "name": "Kiddo World",
+    "legalName": "Bhagwati Toyland Pvt. Ltd.",
+    "tagline": "Building magical worlds for kids!",
+    "founded": 2024
+  },
+  "domain": "https://www.example.com",
+  "shopUrl": "#",
+  "whatsapp": {
+    "number": "91XXXXXXXXXX",
+    "defaultMessage": "Hi, I'd like to enquire about bulk pricing for Kiddo World toys."
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/",
+    "facebook": "https://www.facebook.com/"
+  },
+  "contact": {
+    "email": "",
+    "address": "FP-63, Vikram Mill Compound, Nr. Sun Petrol Pump, Opp. Patra Wali Chali, Saraspur, Ahmedabad – 380018, Gujarat, India",
+    "shortAddress": "Saraspur, Ahmedabad – 380018, Gujarat",
+    "hours": "Monday – Saturday, 9:00 AM – 5:00 PM",
+    "mapQuery": "FP-63 Vikram Mill Compound Saraspur Ahmedabad 380018"
+  },
+  "form": {
+    "endpoint": "api/contact.php"
+  },
+  "catalogue": {
+    "pdf": "catalogue/kiddoworld-catalogue.pdf"
+  },
+  "showPlaceholders": true
+}

@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import { site, url, waLink } from '../lib/site.js';
+---
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <img class="logo-img" src={url('images/logo.png')} alt={site.brand.name} width="88" height="34" loading="lazy" />
+        <p class="tagline">{site.brand.legalName} — Building magical worlds for kids, and reliable bulk supply for your business.</p>
+        <div class="social-row">
+          <a href={site.social.instagram} aria-label="Instagram" target="_blank" rel="noopener"><Icon name="instagram" /></a>
+          <a href={site.social.facebook} aria-label="Facebook" target="_blank" rel="noopener"><Icon name="facebook" /></a>
+          <a href={waLink()} aria-label="WhatsApp" target="_blank" rel="noopener"><Icon name="whatsapp" /></a>
+        </div>
+      </div>
+      <div>
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#catalogue">Catalogue</a></li>
+          <li><a href="#photos">Photos</a></li>
+          <li><a href="#videos">Videos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>{site.contact.shortAddress}</li>
+          <li><a href={waLink()} target="_blank" rel="noopener">WhatsApp Business</a></li>
+          <li><a href={site.social.instagram} target="_blank" rel="noopener">Instagram</a></li>
+          <li>{site.contact.hours.replace('Monday – Saturday, ', 'Mon – Sat, ')}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {new Date().getFullYear()} {site.brand.legalName} All rights reserved.</span>
+      <span>Manufacturer of Battery-Powered, RC &amp; Friction-Powered Toys — Ahmedabad, Gujarat</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,34 @@
+---
+import Icon from './Icon.astro';
+import { site, content, galleryImages, url } from '../lib/site.js';
+const g = content.gallery;
+const images = galleryImages();
+const show = images.length > 0 || site.showPlaceholders;
+---
+{show && (
+  <section id="photos" class="alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{g.eyebrow}</span>
+        <h2>{g.title}</h2>
+      </div>
+      <div class="gallery-grid">
+        {images.length > 0
+          ? images.map((img) => (
+              <button type="button" class="gallery-item" data-full={url(img.src)} aria-label={`View photo: ${img.alt}`}>
+                <img src={url(img.src)} alt={img.alt} loading="lazy" decoding="async" />
+              </button>
+            ))
+          : Array.from({ length: 8 }).map(() => (
+              <div class="gallery-item ph">
+                <div class="photo-placeholder"><Icon name="image" /><span>Add photos to public/images/gallery</span></div>
+              </div>
+            ))}
+      </div>
+    </div>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button type="button" id="lightboxClose" aria-label="Close"><Icon name="close" /></button>
+      <img id="lightboxImg" alt="" />
+    </div>
+  </section>
+)}
