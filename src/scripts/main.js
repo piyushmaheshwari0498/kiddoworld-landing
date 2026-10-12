@@ -179,20 +179,34 @@ $('#chatForm')?.addEventListener('submit', (e) => {
   input.value = '';
 });
 
-/* ---------- Photo lightbox ---------- */
+/* ---------- Photo lightbox (click to enlarge, arrows / swipe keys to browse) ---------- */
 const lightbox = $('#lightbox');
 if (lightbox) {
   const img = $('#lightboxImg');
+  const tiles = $$('.gallery-item[data-full]');
+  let current = 0;
+  const show = (i) => {
+    current = (i + tiles.length) % tiles.length;
+    img.src = tiles[current].dataset.full;
+    img.alt = $('img', tiles[current]).alt;
+  };
   const close = () => lightbox.classList.remove('open');
-  $$('.gallery-item[data-full]').forEach((b) =>
-    b.addEventListener('click', () => {
-      img.src = b.dataset.full;
-      img.alt = $('img', b).alt;
+  tiles.forEach((t, i) =>
+    t.addEventListener('click', () => {
+      show(i);
       lightbox.classList.add('open');
     })
   );
-  lightbox.addEventListener('click', (e) => e.target !== img && close());
-  document.addEventListener('keydown', (e) => e.key === 'Escape' && close());
+  $('#lightboxPrev').addEventListener('click', (e) => { e.stopPropagation(); show(current - 1); });
+  $('#lightboxNext').addEventListener('click', (e) => { e.stopPropagation(); show(current + 1); });
+  lightbox.addEventListener('click', (e) => e.target === lightbox && close());
+  $('#lightboxClose').addEventListener('click', close);
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
 }
 
 /* ---------- Video click-to-play (YouTube / Instagram / Facebook load only when pressed) ---------- */

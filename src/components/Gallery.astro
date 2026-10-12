@@ -15,16 +15,18 @@ const collator = new Intl.Collator('en', { numeric: true, sensitivity: 'base' })
 const names = Object.keys(files).sort((a, b) => collator.compare(a, b));
 
 const images = await Promise.all(
-  names.map(async (path) => {
+  names.map(async (path, i) => {
     const src = files[path];
     const [thumb, full] = await Promise.all([
-      getImage({ src, width: 640, height: 640, fit: 'cover', format: 'webp', quality: 78 }),
+      getImage({ src, width: 640, format: 'webp', quality: 78 }), // keeps the photo's own shape (posters aren't cropped)
       getImage({ src, width: 1600, format: 'webp', quality: 82 }),
     ]);
     const base = path.split('/').pop().replace(/\.[^.]+$/, '');
     // "03-factory floor.jpg" -> "factory floor"
-    const alt = base.replace(/^\d+[-_.\s]*/, '').replace(/[-_]+/g, ' ').trim() || 'Kiddo World';
-    return { thumb: thumb.src, full: full.src, alt };
+    let alt = base.replace(/^\d+[-_.\s]*/, '').replace(/[-_]+/g, ' ').trim();
+    // Camera / WhatsApp default names (PHOTO-2026-…, IMG_1234, WhatsApp Image …) make poor captions.
+    if (!alt || /^(photo|img|image|dsc|pxl|whatsapp|screenshot|picture)\b/i.test(alt) || /^[\d\s.:-]+$/.test(alt)) alt = `Kiddo World toys – photo ${i + 1}`;
+    return { thumb: thumb.src, full: full.src, alt, w: thumb.attributes.width, h: thumb.attributes.height };
   })
 );
 
@@ -41,7 +43,7 @@ const show = images.length > 0 || site.showPlaceholders;
         {images.length > 0
           ? images.map((img) => (
               <button type="button" class="gallery-item" data-full={img.full} aria-label={`View photo: ${img.alt}`}>
-                <img src={img.thumb} alt={img.alt} loading="lazy" decoding="async" width="640" height="640" />
+                <img src={img.thumb} alt={img.alt} loading="lazy" decoding="async" width={img.w} height={img.h} />
               </button>
             ))
           : Array.from({ length: 8 }).map(() => (
@@ -53,6 +55,8 @@ const show = images.length > 0 || site.showPlaceholders;
     </div>
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
       <button type="button" id="lightboxClose" aria-label="Close"><Icon name="close" /></button>
+      <button type="button" class="lb-nav prev" id="lightboxPrev" aria-label="Previous photo"><Icon name="arrow" /></button>
+      <button type="button" class="lb-nav next" id="lightboxNext" aria-label="Next photo"><Icon name="arrow" /></button>
       <img id="lightboxImg" alt="" />
     </div>
   </section>
