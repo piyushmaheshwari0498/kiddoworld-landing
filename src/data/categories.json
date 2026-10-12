@@ -8,7 +8,8 @@
     "examples": [
       "Hoverball",
       "Sensor Bullet Train"
-    ]
+    ],
+    "image": "images/products/funny-elephant.webp"
   },
   {
     "id": "rc",
@@ -19,7 +20,8 @@
     "examples": [
       "Remote Control Thaar",
       "Desert Scorpion"
-    ]
+    ],
+    "image": "images/products/remote-control-thaar.webp"
   },
   {
     "id": "friction",
@@ -30,6 +32,7 @@
     "examples": [
       "Tractor",
       "Police Van"
-    ]
+    ],
+    "image": "images/products/police-van.webp"
   }
 ]

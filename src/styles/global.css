@@ -854,3 +854,32 @@
 
   section.alt{ background:var(--white); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
   .about-side .row .rupee{ font-size:22px; }
+
+  /* Product + category photos (transparent cut-outs sit on the soft cream tile) */
+  .product-photo{ overflow:hidden; }
+  .product-photo img{ display:block; object-fit:contain; padding:14px; }
+  .cat-photo{ overflow:hidden; aspect-ratio:4/3; background:var(--cream-2); border-bottom:1px solid var(--border); }
+  .cat-photo img{ display:block; width:100%; height:100%; object-fit:contain; padding:18px; }
+
+  /* Videos: landscape and portrait (Shorts / Reels) cards flow together without gaps */
+  .video-grid{ display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; }
+  .video-card.landscape{ flex:1 1 420px; max-width:calc(50% - 12px); }
+  .video-card.portrait{ flex:0 0 300px; }
+  .video-card.portrait .video-frame{ aspect-ratio:9/16; }
+  .video-card.portrait .video-frame:has(iframe[src*="instagram.com"]){ aspect-ratio:9/17.5; }
+  .video-brand{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+    color:var(--white); font-weight:600; font-size:14px;
+    background:linear-gradient(135deg, var(--blue-dark), var(--pink));
+  }
+  .video-brand.instagram{ background:linear-gradient(45deg,#f09433,#dc2743 55%,#bc1888); }
+  .video-brand.facebook{ background:linear-gradient(135deg,#1877f2,#3b5998); }
+  .video-brand svg{ width:34px; height:34px; }
+  .video-link{ display:inline-flex; align-items:center; gap:6px; margin:-8px 20px 18px; font-size:13.5px; font-weight:600; color:var(--blue-dark); }
+  .video-link svg{ width:15px; height:15px; }
+  .video-link:hover{ text-decoration:underline; }
+  .video-frame video{ background:#000; }
+  @media (max-width:760px){
+    .video-card.landscape, .video-card.portrait{ flex:1 1 100%; max-width:100%; }
+    .video-card.portrait{ max-width:340px; margin:0 auto; }
+  }

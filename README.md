@@ -47,22 +47,51 @@ The 62 products come straight from the 2026 catalogue (`KW_FINAL_Q.pdf`). Each e
 - `Clapping Hand` and `Pickle Ball` have no mechanism in the catalogue and sit under the friction group for now – move or remove them as you prefer.
 
 ### Product photos
-1. Name the photo after the product: `Police Van.jpg`.
-2. Put it in `inbox/` and run `npm run images` – it creates a small `public/images/products/police-van.webp`.
-3. Build. The photo is picked up **automatically** (matched by product `id`). Products without a photo show a neutral placeholder.
+Every product photo is a file named after the product's `id`: `public/images/products/<id>.webp`
+(e.g. `police-van.webp`). The site picks it up automatically. The 62 photos currently there were taken from the 2026 catalogue.
+
+**Change a photo**
+- *Easiest (no install, from the GitHub website):* open the repo → `public/images/products/` → **Add file → Upload files** →
+  upload the new image **with the same file name** (`police-van.webp`) → commit. It replaces the old one and the site redeploys.
+  Use a transparent-background WebP or PNG/JPG, about 800 px wide, under ~200 KB.
+- *On your computer:* name the photo after the product (`Police Van.jpg`), put it in `inbox/`, run `npm run images`.
+  It converts it to a small WebP and overwrites the old one. Commit and push.
+- Product has a differently named file? Set it in `products.json`: `"image": "images/products/my-file.webp"`.
+
+**Add a product:** add an entry to `products.json` (copy an existing one, give it a new unique `id`), and upload its photo as
+`<id>.webp`. It appears in the catalogue and in the filters.
+**Change a product:** edit its entry (name, `category`, `ageMin`/`ageText`). Keep the `id` unchanged so its photo still matches.
+**Remove a product:** delete its entry (and optionally its photo).
+**Reorder:** products show in the order of `products.json`.
 
 ### Gallery photos
-Put photos in `inbox/` and run `npm run images -- gallery`. Everything in `public/images/gallery/` appears in the
-Photos section, sorted by filename (prefix `01-`, `02-` to control order). Click-to-enlarge is built in.
+Put photos in `inbox/` and run `npm run images -- gallery` (or upload straight into `public/images/gallery/` on GitHub).
+Everything in that folder appears in the Photos section, sorted by filename (prefix `01-`, `02-` to control order).
+Click-to-enlarge is built in.
 
 ### Videos
-Edit `src/data/videos.json`:
+Each video in `src/data/videos.json` needs only a **title** and a **url** – paste the normal link and the site works out the
+rest, so you can freely mix platforms and add as many as you like:
 ```json
-{ "title": "Inside our factory", "youtube": "dQw4w9WgXcQ" }
-{ "title": "Toys in action", "file": "videos/toys-in-action.mp4", "poster": "images/video-poster.webp" }
+[
+  { "title": "Inside our factory",   "url": "https://www.youtube.com/watch?v=XXXXXXXXXXX" },
+  { "title": "New RC Thaar reel",     "url": "https://www.instagram.com/reel/XXXXXXXXXXX/" },
+  { "title": "Dealer meet (Shorts)",  "url": "https://www.youtube.com/shorts/XXXXXXXXXXX" },
+  { "title": "Facebook video",        "url": "https://www.facebook.com/kiddoworld/videos/123456789/" },
+  { "title": "Product demo",          "url": "videos/product-demo.mp4" }
+]
 ```
-- `youtube` = the ID after `v=` in the YouTube link (loads only when someone presses play → fast page).
-- `file` = an MP4 you put in `public/videos/` (keep under ~20 MB; compress it first).
+| Link you paste | How it's shown |
+|---|---|
+| YouTube (`watch?v=`, `youtu.be/`) | Wide 16:9 card; thumbnail picked up automatically, loads only when someone presses play |
+| YouTube Shorts (`/shorts/`) | Tall phone-shaped card |
+| Instagram reel / post (`/reel/…`, `/p/…`) | Tall phone-shaped card with Instagram's player (+ an "Open on Instagram" link) |
+| Facebook video / reel | Card with Facebook's player |
+| `videos/your-file.mp4` | Your own MP4 (upload it into `public/videos/`) with a normal player; optional `"poster": "images/poster.webp"`, `"orientation": "portrait"` for vertical clips |
+
+Notes: Instagram and Facebook only embed **public** posts. A link the site doesn't recognise is skipped (the build never breaks).
+Instagram has no public thumbnail, so reels show a branded tile unless you add `"poster": "images/my-poster.webp"`.
+Keep your own MP4s under ~20 MB (compress them first) – for long videos, YouTube is better.
 
 ### Catalogue PDF
 The 2026 catalogue is already at `public/catalogue/kiddoworld-catalogue.pdf` (compressed from 38 MB to 16 MB so buyers on mobile

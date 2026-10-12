@@ -1,10 +1,13 @@
 ---
 import Icon from './Icon.astro';
 import { site, content, videos, url, publicFileExists } from '../lib/site.js';
+import { parseVideo } from '../lib/video.js';
+
 const v = content.videos;
-const ready = videos.filter((x) => x.youtube || (x.file && publicFileExists(x.file)));
+const items = videos.map((entry) => ({ entry, video: parseVideo(entry) }));
+const ready = items.filter(({ video }) => video && (video.kind !== 'file' || publicFileExists(video.file)));
 const show = ready.length > 0 || site.showPlaceholders;
-const list = ready.length > 0 ? ready : videos;
+const list = ready.length > 0 ? ready : items;
 ---
 {show && (
   <section id="videos">
@@ -14,23 +17,28 @@ const list = ready.length > 0 ? ready : videos;
         <h2>{v.title}</h2>
       </div>
       <div class="video-grid">
-        {list.map((item) => (
-          <div class="video-card">
-            {item.youtube ? (
-              <div class="video-frame" data-youtube={item.youtube}>
-                <img src={item.poster ? url(item.poster) : `https://i.ytimg.com/vi/${item.youtube}/hqdefault.jpg`} alt="" loading="lazy" />
-                <button type="button" class="video-play" aria-label={`Play video: ${item.title}`}><span><Icon name="play" /></span></button>
-              </div>
-            ) : item.file && publicFileExists(item.file) ? (
+        {list.map(({ entry, video }) => (
+          <div class:list={['video-card', video?.portrait ? 'portrait' : 'landscape']}>
+            {video?.kind === 'file' && publicFileExists(video.file) ? (
               <div class="video-frame">
-                <video controls preload="none" playsinline poster={item.poster ? url(item.poster) : undefined}>
-                  <source src={url(item.file)} type="video/mp4" />
+                <video controls preload="metadata" playsinline poster={entry.poster ? url(entry.poster) : undefined}>
+                  <source src={url(video.file)} />
                 </video>
               </div>
+            ) : video?.embed ? (
+              <div class="video-frame" data-embed={video.embed} data-title={entry.title}>
+                {entry.poster || video.thumb
+                  ? <img src={entry.poster ? url(entry.poster) : video.thumb} alt="" loading="lazy" />
+                  : <div class={`video-brand ${video.kind}`}><Icon name={video.kind === 'instagram' ? 'instagram' : 'video'} /><span>{video.label}</span></div>}
+                <button type="button" class="video-play" aria-label={`Play video: ${entry.title}`}><span><Icon name="play" /></span></button>
+              </div>
             ) : (
-              <div class="video-frame ph"><Icon name="video" /><span>Add a YouTube ID or MP4 in src/data/videos.json</span></div>
+              <div class="video-frame ph"><Icon name="video" /><span>Paste a video link in src/data/videos.json</span></div>
             )}
-            <h3>{item.title}</h3>
+            <h3>{entry.title}</h3>
+            {video?.watch && video.kind !== 'youtube' && (
+              <a class="video-link" href={video.watch} target="_blank" rel="noopener">Open on {video.label.split(' ')[0]} <Icon name="arrow" /></a>
+            )}
           </div>
         ))}
       </div>

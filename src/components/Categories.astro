@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { content, categories, site } from '../lib/site.js';
+import { content, categories, site, url, publicFileExists } from '../lib/site.js';
 const c = content.categories;
 ---
 <section id="products" class="alt">
@@ -13,10 +13,12 @@ const c = content.categories;
     <div class="cat-grid">
       {categories.map((cat) => (
         <div class="cat-card">
-          <div class="photo-placeholder">
-            <Icon name={cat.icon} />
-            {site.showPlaceholders && <span>Category photo — {cat.short.toLowerCase()} toys</span>}
-          </div>
+          {publicFileExists(cat.image)
+            ? <div class="cat-photo"><img src={url(cat.image)} alt={`${cat.label} by Kiddo World`} loading="lazy" decoding="async" width="600" height="450" /></div>
+            : <div class="photo-placeholder">
+                <Icon name={cat.icon} />
+                {site.showPlaceholders && <span>Category photo — {cat.short.toLowerCase()} toys</span>}
+              </div>}
           <div class="body">
             <h3>{cat.label}</h3>
             <p>{cat.description}</p>

@@ -195,14 +195,14 @@ if (lightbox) {
   document.addEventListener('keydown', (e) => e.key === 'Escape' && close());
 }
 
-/* ---------- YouTube click-to-play (loads the player only on demand) ---------- */
-$$('.video-frame[data-youtube]').forEach((frame) => {
+/* ---------- Video click-to-play (YouTube / Instagram / Facebook load only when pressed) ---------- */
+$$('.video-frame[data-embed]').forEach((frame) => {
   $('.video-play', frame).addEventListener('click', () => {
     const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube-nocookie.com/embed/${frame.dataset.youtube}?autoplay=1&rel=0`;
-    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    iframe.src = frame.dataset.embed;
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen; clipboard-write';
     iframe.allowFullscreen = true;
-    iframe.title = 'Kiddo World video';
+    iframe.title = frame.dataset.title || 'Kiddo World video';
     frame.replaceChildren(iframe);
   });
 });

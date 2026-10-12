@@ -1,14 +1,4 @@
 [
-  {
-    "title": "Inside our factory",
-    "youtube": "",
-    "file": "",
-    "poster": ""
-  },
-  {
-    "title": "Our toys in action",
-    "youtube": "",
-    "file": "",
-    "poster": ""
-  }
+  { "title": "Inside our factory", "url": "" },
+  { "title": "Our toys in action", "url": "" }
 ]
