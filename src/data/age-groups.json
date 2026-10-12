@@ -1,18 +1,20 @@
 [
   {
-    "id": "0-2",
-    "label": "0–2 yrs"
+    "id": "under3",
+    "label": "Under 3 yrs",
+    "min": 0,
+    "max": 3
   },
   {
-    "id": "3-5",
-    "label": "3–5 yrs"
+    "id": "3plus",
+    "label": "3+ yrs",
+    "min": 3,
+    "max": 4
   },
   {
-    "id": "6-8",
-    "label": "6–8 yrs"
-  },
-  {
-    "id": "9+",
-    "label": "9+ yrs"
+    "id": "4plus",
+    "label": "4 yrs & above",
+    "min": 4,
+    "max": 999
   }
 ]

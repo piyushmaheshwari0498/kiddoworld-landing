@@ -29,18 +29,22 @@ Requires Node 20+ (22 recommended).
 | Product photos | drop into `inbox/`, run `npm run images` (see below) |
 | Gallery photos | drop into `inbox/`, run `npm run images -- gallery` |
 | Catalogue PDF | replace `public/catalogue/kiddoworld-catalogue.pdf` |
-| Logo | replace `public/images/logo.png` and `public/favicon.png` |
+| Logo | replace `public/images/logo.webp` (site) and `logo.png` (link previews) – transparent background; original is kept in `logo-original.jpg` |
 | Colours / fonts | CSS variables at the top of `src/styles/global.css` |
 
 After any change: `npm run build`, then upload `dist/` (see Deploying).
 
 ### Products
-Each product in `products.json`:
+The 62 products come straight from the 2026 catalogue (`KW_FINAL_Q.pdf`). Each entry in `products.json`:
 ```json
-{ "id": "police-van", "name": "Police Van", "category": "friction", "ageGroups": ["3-5", "6-8"] }
+{ "id": "police-van", "name": "Police Van", "category": "friction", "ageMin": 3, "ageText": "3+ yrs" }
 ```
-`category` is one of `battery`, `rc`, `friction`. `ageGroups` uses ids from `age-groups.json`
-(a product can belong to several). **Age groups were assigned as a first guess – please review them.**
+- `category`: `battery`, `rc` or `friction` (friction group = friction-powered, pull-back, press-n-go and free-wheel toys).
+- `ageMin`: the starting age printed in the catalogue, in years (6 months = `0.5`). It decides which age filter the toy appears
+  under (bands are in `age-groups.json`: *Under 3 yrs*, *3+ yrs*, *4 yrs & above*). `ageText` is what the card shows.
+- `mechanism` is optional (Pull Back, Press n Go, Free Wheel) and shown next to the toy type.
+- The catalogue also lists item codes, pack sizes and MRP – these are deliberately **not** on the website (they're in the PDF).
+- `Clapping Hand` and `Pickle Ball` have no mechanism in the catalogue and sit under the friction group for now – move or remove them as you prefer.
 
 ### Product photos
 1. Name the photo after the product: `Police Van.jpg`.
@@ -61,8 +65,9 @@ Edit `src/data/videos.json`:
 - `file` = an MP4 you put in `public/videos/` (keep under ~20 MB; compress it first).
 
 ### Catalogue PDF
-Save your PDF as `public/catalogue/kiddoworld-catalogue.pdf` (or change the path in `site.json`). The "Download Catalogue"
-button appears automatically. **Don't put a price-list PDF there** – bulk prices should be shared on enquiry.
+The 2026 catalogue is already at `public/catalogue/kiddoworld-catalogue.pdf` (compressed from 38 MB to 16 MB so buyers on mobile
+can download it). To replace it, overwrite that file – the "Download Catalogue" button picks it up. Keep it under ~20 MB.
+Note: the catalogue prints the **MRP** of each toy, so anyone who downloads it sees the MRP. Dealer prices are not in it.
 
 ## Contact form (email + Google Sheet + WhatsApp)
 
@@ -81,14 +86,16 @@ protection (hidden trap field, speed check, 5-per-10-minutes limit).
 
 ## Deploying (cPanel / shared hosting)
 
+**Automatic (recommended):** pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and uploads it to
+your server by FTP. One-time setup is in [`docs/DEPLOY.md`](docs/DEPLOY.md).
+
+**Manual:**
 1. `npm run build`
-2. Upload **the contents of `dist/`** (including the hidden `.htaccess`) to the folder for the site, e.g. a sub-domain
-   `toys.yourdomain.com` → its `public_html` folder. A sub-domain is recommended so it never clashes with WordPress.
+2. Upload **the contents of `dist/`** (including the hidden `.htaccess`) to the site's folder, e.g. a sub-domain
+   `toys.yourdomain.com` → its document root. A sub-domain is recommended so it never clashes with WordPress.
 3. Create `config.php` as described above (first time only).
 4. In `src/data/site.json` set `domain`, then rebuild. If the page lives in a sub-*folder* (e.g. `yourdomain.com/toys/`)
    also set `base: '/toys/'` in `astro.config.mjs`.
-
-Optional automation later: GitHub Actions can run the build and upload `dist/` by FTP/SSH on every push.
 
 ## GitHub
 
@@ -100,11 +107,11 @@ Use a **private** repository. Secrets (`config.php`), stored enquiries and `node
 
 ## Launch checklist
 `npm run build` prints a "[launch checklist]" for anything still unset. In short:
-- [ ] Real WhatsApp number (`site.json → whatsapp.number`, digits with country code, e.g. `919274384990`)
-- [ ] Shop Now URL (`shopUrl`), Instagram + Facebook URLs, contact email, `domain`
+- [x] WhatsApp number, Shop Now URL and contact email are set
+- [ ] Instagram + Facebook URLs, and `domain` (in `site.json`)
 - [ ] `config.php` created on the server and a test enquiry received
 - [ ] Real product photos, gallery photos, videos, catalogue PDF added
-- [ ] Review age groups and product list
+- [ ] Review the product list (names, toy types, ages) against the catalogue
 - [ ] `showPlaceholders` set to **false** (hides the "add photo/video" tiles)
 - [ ] BIS certificate shown: `content.json → about.bis.enabled = true` and fill in the detail
 - [ ] Add Google Analytics / Search Console if wanted

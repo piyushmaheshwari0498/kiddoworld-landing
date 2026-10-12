@@ -5,6 +5,8 @@ const c = content.catalogue;
 const catById = Object.fromEntries(categories.map((x) => [x.id, x]));
 const pdfExists = publicFileExists(site.catalogue.pdf);
 const pageSize = 12;
+// A toy belongs to the age band that contains the starting age printed in the catalogue (ageMin).
+const bandOf = (p) => ageGroups.find((g) => p.ageMin >= g.min && p.ageMin < g.max)?.id ?? '';
 ---
 <section id="catalogue">
   <div class="container">
@@ -33,7 +35,7 @@ const pageSize = 12;
         const img = productImage(p);
         const cat = catById[p.category];
         return (
-          <article class="product-card" data-category={p.category} data-ages={p.ageGroups.join(' ')}>
+          <article class="product-card" data-category={p.category} data-ages={bandOf(p)}>
             <div class="product-photo">
               {img
                 ? <img src={url(img)} alt={p.name} loading="lazy" decoding="async" width="600" height="600" />
@@ -43,9 +45,9 @@ const pageSize = 12;
                   </div>}
             </div>
             <div class="body">
-              <span class="product-tag">{cat.short}</span>
+              <span class="product-tag">{cat.short}{p.mechanism ? ` · ${p.mechanism}` : ''}</span>
               <h4>{p.name}</h4>
-              <p class="product-ages">Ages {p.ageGroups.join(' · ')} yrs</p>
+              <p class="product-ages">Ages {p.ageText}</p>
               <div class="product-actions">
                 <button type="button" class="product-enquire js-enquire" data-product={p.name} data-category={p.category}>
                   <Icon name="message" />Enquire
