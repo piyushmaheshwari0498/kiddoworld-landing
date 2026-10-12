@@ -1,8 +1,33 @@
 ---
+import { getImage } from 'astro:assets';
 import Icon from './Icon.astro';
-import { site, content, galleryImages, url } from '../lib/site.js';
+import { site, content } from '../lib/site.js';
+
 const g = content.gallery;
-const images = galleryImages();
+
+// Every photo inside /gallery (project root) is picked up automatically at build time.
+const files = import.meta.glob('../../gallery/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP,AVIF}', {
+  eager: true,
+  import: 'default',
+});
+
+const collator = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
+const names = Object.keys(files).sort((a, b) => collator.compare(a, b));
+
+const images = await Promise.all(
+  names.map(async (path) => {
+    const src = files[path];
+    const [thumb, full] = await Promise.all([
+      getImage({ src, width: 640, height: 640, fit: 'cover', format: 'webp', quality: 78 }),
+      getImage({ src, width: 1600, format: 'webp', quality: 82 }),
+    ]);
+    const base = path.split('/').pop().replace(/\.[^.]+$/, '');
+    // "03-factory floor.jpg" -> "factory floor"
+    const alt = base.replace(/^\d+[-_.\s]*/, '').replace(/[-_]+/g, ' ').trim() || 'Kiddo World';
+    return { thumb: thumb.src, full: full.src, alt };
+  })
+);
+
 const show = images.length > 0 || site.showPlaceholders;
 ---
 {show && (
@@ -15,13 +40,13 @@ const show = images.length > 0 || site.showPlaceholders;
       <div class="gallery-grid">
         {images.length > 0
           ? images.map((img) => (
-              <button type="button" class="gallery-item" data-full={url(img.src)} aria-label={`View photo: ${img.alt}`}>
-                <img src={url(img.src)} alt={img.alt} loading="lazy" decoding="async" />
+              <button type="button" class="gallery-item" data-full={img.full} aria-label={`View photo: ${img.alt}`}>
+                <img src={img.thumb} alt={img.alt} loading="lazy" decoding="async" width="640" height="640" />
               </button>
             ))
           : Array.from({ length: 8 }).map(() => (
               <div class="gallery-item ph">
-                <div class="photo-placeholder"><Icon name="image" /><span>Add photos to public/images/gallery</span></div>
+                <div class="photo-placeholder"><Icon name="image" /><span>Add photos to the gallery folder</span></div>
               </div>
             ))}
       </div>

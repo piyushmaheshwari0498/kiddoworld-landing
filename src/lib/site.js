@@ -42,20 +42,6 @@ export function productImage(p) {
   return null;
 }
 
-/** Every image dropped into public/images/gallery, sorted by filename. */
-export function galleryImages() {
-  const dir = path.join(publicDir, 'images/gallery');
-  if (!fs.existsSync(dir)) return [];
-  return fs
-    .readdirSync(dir)
-    .filter((f) => /\.(webp|jpe?g|png|avif)$/i.test(f))
-    .sort()
-    .map((f) => ({
-      src: `images/gallery/${f}`,
-      alt: f.replace(/\.[^.]+$/, '').replace(/^\d+[-_ ]*/, '').replace(/[-_]+/g, ' ') || 'Kiddo World',
-    }));
-}
-
 /** Warn at build time about placeholder values that must be replaced before launch. */
 export function launchWarnings() {
   const w = [];

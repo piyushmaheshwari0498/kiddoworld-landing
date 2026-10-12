@@ -27,7 +27,7 @@ Requires Node 20+ (22 recommended).
 | Age-group filter buttons | `src/data/age-groups.json` |
 | Videos | `src/data/videos.json` |
 | Product photos | drop into `inbox/`, run `npm run images` (see below) |
-| Gallery photos | drop into `inbox/`, run `npm run images -- gallery` |
+| Gallery photos | add/delete files in the `gallery/` folder |
 | Catalogue PDF | replace `public/catalogue/kiddoworld-catalogue.pdf` |
 | Logo | replace `public/images/logo.webp` (site) and `logo.png` (link previews) – transparent background; original is kept in `logo-original.jpg` |
 | Colours / fonts | CSS variables at the top of `src/styles/global.css` |
@@ -65,9 +65,19 @@ Every product photo is a file named after the product's `id`: `public/images/pro
 **Reorder:** products show in the order of `products.json`.
 
 ### Gallery photos
-Put photos in `inbox/` and run `npm run images -- gallery` (or upload straight into `public/images/gallery/` on GitHub).
-Everything in that folder appears in the Photos section, sorted by filename (prefix `01-`, `02-` to control order).
-Click-to-enlarge is built in.
+Put photos in the **`gallery/`** folder (project root – *not* inside `public`). That's all: the next build picks up every
+photo in it, creates a small thumbnail and a large version automatically (so even big phone photos are fine – the page never
+loads the originals), and shows them in the Photos section with click-to-enlarge.
+
+- **Add** a photo → drop it in `gallery/`, commit, push. **Remove** a photo → delete the file, commit, push. Nothing else to edit.
+- **Order:** by file name, numbers counted properly – `1-…`, `2-…`, `10-…`. Rename a file to move it (`01-factory.jpg`).
+- **Caption/alt text** comes from the file name: `03-factory floor.jpg` → "factory floor" (leading number removed).
+- Formats: JPG, PNG, WebP, AVIF. iPhone HEIC files must be exported/converted to JPG first.
+- Keep each original under ~5 MB (it is stored in GitHub; the website doesn't load it).
+- From the GitHub website: open the `gallery` folder → **Add file → Upload files** (or open a file → trash icon to delete) →
+  commit. The automatic deploy then updates the live site.
+- If the folder is empty, the section shows "add photo" placeholder tiles until `showPlaceholders` is set to `false` in
+  `site.json`, which then hides the whole Photos section.
 
 ### Videos
 Each video in `src/data/videos.json` needs only a **url** (and optionally a **title**) – paste the normal link and the site works
@@ -153,7 +163,8 @@ src/data/        all editable content (JSON)
 src/components/  page sections (Astro components)
 src/scripts/     browser code: filters, enquiry form, chat, lightbox
 src/styles/      global.css
-public/          files copied as-is: images, videos, catalogue PDF, api/contact.php, .htaccess
+gallery/         the Photos section – just add or delete photos here
+public/          files copied as-is: product images, videos, catalogue PDF, api/contact.php, .htaccess
 scripts/         optimize-images.mjs
 inbox/           drop raw photos here (git-ignored)
 ```
