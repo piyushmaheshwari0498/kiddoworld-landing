@@ -100,7 +100,7 @@ Use a **private** repository. Secrets (`config.php`), stored enquiries and `node
 
 ## Launch checklist
 `npm run build` prints a "[launch checklist]" for anything still unset. In short:
-- [ ] Real WhatsApp number (`site.json → whatsapp.number`, digits with country code, e.g. `919876543210`)
+- [ ] Real WhatsApp number (`site.json → whatsapp.number`, digits with country code, e.g. `919274384990`)
 - [ ] Shop Now URL (`shopUrl`), Instagram + Facebook URLs, contact email, `domain`
 - [ ] `config.php` created on the server and a test enquiry received
 - [ ] Real product photos, gallery photos, videos, catalogue PDF added
