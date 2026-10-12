@@ -119,3 +119,4 @@ public/          files copied as-is: images, videos, catalogue PDF, api/contact.
 scripts/         optimize-images.mjs
 inbox/           drop raw photos here (git-ignored)
 ```
+# kiddoworld-landing
