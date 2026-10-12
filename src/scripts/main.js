@@ -206,3 +206,20 @@ $$('.video-frame[data-embed]').forEach((frame) => {
     frame.replaceChildren(iframe);
   });
 });
+
+/* ---------- Video carousel arrows ---------- */
+const track = $('#videoTrack');
+if (track) {
+  const prev = $('#videoCarousel .prev');
+  const next = $('#videoCarousel .next');
+  const update = () => {
+    prev.hidden = track.scrollLeft < 8;
+    next.hidden = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+  };
+  const step = () => (track.firstElementChild?.getBoundingClientRect().width ?? 320) + 22;
+  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+  track.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+}

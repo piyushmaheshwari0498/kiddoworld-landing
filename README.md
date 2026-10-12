@@ -70,15 +70,17 @@ Everything in that folder appears in the Photos section, sorted by filename (pre
 Click-to-enlarge is built in.
 
 ### Videos
-Each video in `src/data/videos.json` needs only a **title** and a **url** – paste the normal link and the site works out the
-rest, so you can freely mix platforms and add as many as you like:
+Each video in `src/data/videos.json` needs only a **url** (and optionally a **title**) – paste the normal link and the site works
+out the rest, so you can freely mix platforms and add as many as you like. They appear in one swipeable row (arrows on desktop,
+finger-swipe on mobile) in the order you list them. Without a `title`, the card is captioned with the platform name.
 ```json
 [
   { "title": "Inside our factory",   "url": "https://www.youtube.com/watch?v=XXXXXXXXXXX" },
   { "title": "New RC Thaar reel",     "url": "https://www.instagram.com/reel/XXXXXXXXXXX/" },
   { "title": "Dealer meet (Shorts)",  "url": "https://www.youtube.com/shorts/XXXXXXXXXXX" },
   { "title": "Facebook video",        "url": "https://www.facebook.com/kiddoworld/videos/123456789/" },
-  { "title": "Product demo",          "url": "videos/product-demo.mp4" }
+  { "title": "Udaan 47 – new arrival", "url": "videos/product-demo.mp4",
+    "poster": "images/videos/product-demo-poster.webp", "orientation": "portrait" }
 ]
 ```
 | Link you paste | How it's shown |
@@ -87,7 +89,7 @@ rest, so you can freely mix platforms and add as many as you like:
 | YouTube Shorts (`/shorts/`) | Tall phone-shaped card |
 | Instagram reel / post (`/reel/…`, `/p/…`) | Tall phone-shaped card with Instagram's player (+ an "Open on Instagram" link) |
 | Facebook video / reel | Card with Facebook's player |
-| `videos/your-file.mp4` | Your own MP4 (upload it into `public/videos/`) with a normal player; optional `"poster": "images/poster.webp"`, `"orientation": "portrait"` for vertical clips |
+| `videos/your-file.mp4` | Your own MP4 (put it in `public/videos/`) with a normal player. Add `"orientation": "portrait"` for vertical phone videos, and optionally `"poster": "images/videos/your-poster.webp"` (cover image shown before play) |
 
 Notes: Instagram and Facebook only embed **public** posts. A link the site doesn't recognise is skipped (the build never breaks).
 Instagram has no public thumbnail, so reels show a branded tile unless you add `"poster": "images/my-poster.webp"`.

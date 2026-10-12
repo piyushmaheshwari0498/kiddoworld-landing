@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import { site, content, categories, ageGroups, url, waLink } from '../lib/site.js';
 const c = content.contact;
+const igHandle = new URL(site.social.instagram).pathname.split('/').filter(Boolean)[0] ?? site.brand.name.replace(/\s+/g, '').toLowerCase();
 const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.contact.mapQuery)}&output=embed`;
 ---
 <section id="contact" class="alt">
@@ -108,7 +109,7 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.contact.
         <h3>See new toys first on Instagram</h3>
         <p>Product launches, factory moments and dealer favourites.</p>
       </div>
-      <a href={site.social.instagram} class="btn btn-insta" target="_blank" rel="noopener"><Icon name="instagram" />Follow @{site.brand.name.replace(/\s+/g, '').toLowerCase()}</a>
+      <a href={site.social.instagram} class="btn btn-insta" target="_blank" rel="noopener"><Icon name="instagram" />Follow @{igHandle}</a>
     </div>
   </div>
 </section>

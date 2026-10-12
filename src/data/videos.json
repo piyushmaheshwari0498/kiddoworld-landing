@@ -1,4 +1,27 @@
 [
-  { "title": "Inside our factory", "url": "" },
-  { "title": "Our toys in action", "url": "" }
+  {
+    "title": "Udaan 47 – new arrival",
+    "url": "videos/product-demo.mp4",
+    "poster": "images/videos/product-demo-poster.webp",
+    "orientation": "portrait"
+  },
+  {
+    "title": "Kiddo World toys on YouTube",
+    "url": "https://www.youtube.com/shorts/mQrnHQeGizU"
+  },
+  {
+    "url": "https://www.instagram.com/kiddoworld__/reel/DaZi-wgomQl/"
+  },
+  {
+    "url": "https://www.instagram.com/kiddoworld__/reel/DacdAKqoYUa/"
+  },
+  {
+    "url": "https://www.instagram.com/kiddoworld__/reel/DdCHKcfCZsY/"
+  },
+  {
+    "url": "https://www.instagram.com/kiddoworld__/reel/DdvqVbEKKX_/"
+  },
+  {
+    "url": "https://www.instagram.com/kiddoworld__/reel/DZW13WCIzoJ/"
+  }
 ]

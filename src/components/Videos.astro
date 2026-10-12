@@ -16,7 +16,10 @@ const list = ready.length > 0 ? ready : items;
         <span class="eyebrow">{v.eyebrow}</span>
         <h2>{v.title}</h2>
       </div>
-      <div class="video-grid">
+      <div class="video-carousel" id="videoCarousel">
+        <button type="button" class="vc-btn prev" aria-label="Previous videos" hidden><Icon name="arrow" /></button>
+        <button type="button" class="vc-btn next" aria-label="Next videos" hidden><Icon name="arrow" /></button>
+      <div class="video-grid" id="videoTrack" tabindex="0" aria-label="Videos">
         {list.map(({ entry, video }) => (
           <div class:list={['video-card', video?.portrait ? 'portrait' : 'landscape']}>
             {video?.kind === 'file' && publicFileExists(video.file) ? (
@@ -26,21 +29,22 @@ const list = ready.length > 0 ? ready : items;
                 </video>
               </div>
             ) : video?.embed ? (
-              <div class="video-frame" data-embed={video.embed} data-title={entry.title}>
+              <div class="video-frame" data-embed={video.embed} data-title={entry.title ?? video.label}>
                 {entry.poster || video.thumb
                   ? <img src={entry.poster ? url(entry.poster) : video.thumb} alt="" loading="lazy" />
                   : <div class={`video-brand ${video.kind}`}><Icon name={video.kind === 'instagram' ? 'instagram' : 'video'} /><span>{video.label}</span></div>}
-                <button type="button" class="video-play" aria-label={`Play video: ${entry.title}`}><span><Icon name="play" /></span></button>
+                <button type="button" class="video-play" aria-label={`Play video: ${entry.title ?? video.label}`}><span><Icon name="play" /></span></button>
               </div>
             ) : (
               <div class="video-frame ph"><Icon name="video" /><span>Paste a video link in src/data/videos.json</span></div>
             )}
-            <h3>{entry.title}</h3>
+            <h3>{entry.title ?? video?.label ?? 'Video'}</h3>
             {video?.watch && video.kind !== 'youtube' && (
               <a class="video-link" href={video.watch} target="_blank" rel="noopener">Open on {video.label.split(' ')[0]} <Icon name="arrow" /></a>
             )}
           </div>
         ))}
+      </div>
       </div>
     </div>
   </section>

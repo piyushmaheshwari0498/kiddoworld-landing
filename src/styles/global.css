@@ -861,12 +861,28 @@
   .cat-photo{ overflow:hidden; aspect-ratio:4/3; background:var(--cream-2); border-bottom:1px solid var(--border); }
   .cat-photo img{ display:block; width:100%; height:100%; object-fit:contain; padding:18px; }
 
-  /* Videos: landscape and portrait (Shorts / Reels) cards flow together without gaps */
-  .video-grid{ display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; }
-  .video-card.landscape{ flex:1 1 420px; max-width:calc(50% - 12px); }
-  .video-card.portrait{ flex:0 0 300px; }
+  /* Videos: one swipeable row; landscape and portrait (Shorts / Reels) cards sit side by side */
+  .video-carousel{ position:relative; }
+  .video-grid{
+    display:flex; gap:22px; align-items:flex-start;
+    overflow-x:auto; scroll-snap-type:x proximity; scroll-padding:0 24px;
+    padding:4px 2px 18px; scrollbar-width:thin;
+  }
+  .video-card{ scroll-snap-align:start; }
+  .video-card.landscape{ flex:0 0 min(560px, 86%); }
+  .video-card.portrait{ flex:0 0 min(340px, 82%); }
   .video-card.portrait .video-frame{ aspect-ratio:9/16; }
   .video-card.portrait .video-frame:has(iframe[src*="instagram.com"]){ aspect-ratio:9/17.5; }
+  .vc-btn{
+    position:absolute; top:34%; z-index:5; width:46px; height:46px; border-radius:50%;
+    border:1px solid var(--border); background:var(--white); color:var(--ink); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-md);
+  }
+  .vc-btn[hidden]{ display:none; }
+  .vc-btn svg{ width:20px; height:20px; }
+  .vc-btn.prev{ left:-14px; transform:scaleX(-1); }
+  .vc-btn.next{ right:-14px; }
+  .vc-btn:hover{ background:var(--cream-2); }
   .video-brand{
     position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
     color:var(--white); font-weight:600; font-size:14px;
@@ -880,6 +896,5 @@
   .video-link:hover{ text-decoration:underline; }
   .video-frame video{ background:#000; }
   @media (max-width:760px){
-    .video-card.landscape, .video-card.portrait{ flex:1 1 100%; max-width:100%; }
-    .video-card.portrait{ max-width:340px; margin:0 auto; }
+    .vc-btn{ display:none !important; }
   }
